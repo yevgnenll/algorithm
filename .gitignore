@@ -1,0 +1,17 @@
+.project
+.classpath
+.settings
+.springBeans
+
+target/
+bin/
+out/
+rebel.xml
+
+# IDEA
+*.iml
+*.ipr
+*.iws
+.idea/
+out/
+*.sw[po]
