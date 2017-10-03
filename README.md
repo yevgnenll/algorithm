@@ -10,10 +10,11 @@
 
 test code 제작도 필요하다고 봄
 
+## language and version
 
-현재 java, python을 통해서 문제를 풀이하고 있으며
-
-python은 3.6.0 을 사용하지만 3.x이면 무난하다
+- java 1.8.0
+- python 3.6.0 (3.x이면 상관 없음)
+- javascript(es5)
 
 ## commit 방법
 
