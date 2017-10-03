@@ -16,6 +16,10 @@ test code 제작도 필요하다고 봄
 - python 3.6.0 (3.x이면 상관 없음)
 - javascript(es5)
 
+**java를 제외한 언어는 vim + ipython + ijavascript로 확인하며**
+
+**java는 생산성과 알고리즘에 집중하기 위해 IDE를 사용한다**
+
 ## commit 방법
 
 1. 문제 1개당 하나의 commit을 할당한다
