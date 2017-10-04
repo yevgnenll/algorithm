@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class FindKClosest {
   public static void main(String args[]) {
@@ -16,28 +19,36 @@ public class FindKClosest {
     if (convertedList.size() == 1) {
       return convertedList;
     }
-    List<Integer> minusAbs = minusAbsElements(arr, x);
-    int minIndex = getMinIndex(minusAbs);
-    int startIndex = minIndex - (k / 2);
-    return convertedList.subList(startIndex, startIndex + k);
-
+    Map<Integer, List<Integer>> minusAbs = minusAbsElements(arr, x);
+    return getSortedMapList(minusAbs, k);
   }
 
-  private List<Integer> minusAbsElements(int[] arr, int target) {
-    List<Integer> result = new ArrayList<>();
+  private Map<Integer, List<Integer>> minusAbsElements(int[] arr, int target) {
+    Map<Integer, List<Integer>> result = new TreeMap<>();
     for (int number : arr) {
-      int minus = number - target;
-      result.add(Math.abs(minus));
+      int minusAbs = Math.abs(number - target);
+      if (!result.containsKey(minusAbs)) result.put(minusAbs, new LinkedList<>());
+      result.get(minusAbs).add(number);
     }
     return result;
   }
 
-  private int getMinIndex(List<Integer> arr) {
-    return arr.indexOf(Collections.min(arr));
-  }
-
-  private boolean isLengthEven(List<Integer> arr) {
-    return arr.size() % 2 == 0;
+  /*
+  * 여기서 abs를 key로 갖고 해당 abs를 갖는 element를 list로 하여 value로 갖는다
+  * 따라서 기존의 minIndex도 필요하지 않다
+  * 가장 첫번째 element의 key(abs minus)와 element가 답이기 때문
+  * */
+  private List<Integer> getSortedMapList(Map<Integer, List<Integer>> absMap, int size) {
+    List<Integer> result = new ArrayList<>();
+    for (Map.Entry<Integer, List<Integer>> entry : absMap.entrySet()) {
+      for (int value : entry.getValue()) {
+        result.add(value);
+        if (result.size() == size) break;
+      }
+      if (result.size() == size) break;
+    }
+    Collections.sort(result);
+    return result;
   }
 
   private List<Integer> convertToList(int[] arr) {
