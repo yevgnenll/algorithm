@@ -19,7 +19,6 @@ rebel.xml
 ### IntelliJ IDEA ###
 .idea
 *.iws
-*.iml
 *.ipr
 
 ### NetBeans ###
@@ -33,7 +32,6 @@ nbdist/
 node_modules/
 
 .env
-lib/
 out/**
 
 *sw[op]
