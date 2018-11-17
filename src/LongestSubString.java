@@ -13,15 +13,16 @@ public class LongestSubString {
     if (s.length() == 0) {
       return 0;
     }
-    Map<Character, Integer> indexByWord = new HashMap<>();
-    int distance = 1;
-    int max = 1;
-    indexByWord.put(s.charAt(0), 0);
-    for (int i = 0; i < s.length(); i ++) {
-      char lastWord = s.charAt(i);
-      distance = indexByWord.containsKey(lastWord) ? Math.min(i - indexByWord.get(lastWord), distance + 1) : distance + 1;
+    int distance = 1; // 무조건 1자리는 있다.
+    int max = 1; // 1자리가 있기 때문에 max는 1부터 시작한다.
+    Map<Character, Integer> indexByCharacter = new HashMap<>();
+    indexByCharacter.put(s.charAt(0), 0);
+    for (int currentPosition = 1; currentPosition < s.length(); currentPosition ++) {
+      char currentCharacter = s.charAt(currentPosition);
+      distance = indexByCharacter.containsKey(currentCharacter) ?
+          Math.min(currentPosition - indexByCharacter.get(currentCharacter), distance + 1) : distance + 1;
       max = Math.max(distance, max);
-      indexByWord.put(lastWord, i);
+      indexByCharacter.put(currentCharacter, currentPosition);
     }
     return max;
   }
