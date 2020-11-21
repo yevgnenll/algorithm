@@ -3,6 +3,7 @@ import static org.junit.Assert.*;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Stack;
 
 import org.junit.Test;
 
@@ -154,4 +155,27 @@ public class AlgoTest {
     assertThat(isLessThanEqualsOne("pale", "bale"), is(true));
     assertThat(isLessThanEqualsOne("pale", "bake"), is(false));
   }
+
+  @Test
+  public void 스택의_최소값이_가장_위로_올라오도록_정렬한다() {
+    Stack<Integer> testCase = new Stack<>();
+    testCase.push(5);
+    testCase.push(7);
+    testCase.push(8);
+    testCase.push(1);
+    testCase.push(6);
+    testCase.push(3);
+    SortStack sortStack = new SortStack(testCase);
+
+    Stack<Integer> result = new Stack<>();
+    result.push(8);
+    result.push(7);
+    result.push(6);
+    result.push(5);
+    result.push(3);
+    result.push(1);
+
+    assertThat(sortStack.get(), is(result));
+  }
+
 }
