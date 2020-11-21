@@ -178,4 +178,43 @@ public class AlgoTest {
     assertThat(sortStack.get(), is(result));
   }
 
+  private int[][] matrixConvert(int[][] matrix) {
+    int x = 0, y = 0;
+    for (int i = 0; i < matrix.length; i ++) {
+      for (int j = 0; j < matrix[i].length; j ++) {
+        if (matrix[i][j] == 0) {
+          x = i;
+          y = j;
+          break;
+        }
+      }
+    }
+    for (int i = 0; i < matrix.length; i ++) {
+      matrix[i][y] = 0;
+    }
+    for (int i = 0; i < matrix[x].length; i ++) {
+      matrix[x][i] = 0;
+    }
+    return matrix;
+  }
+
+  @Test
+  public void 행렬_MxN_에서_0이_있는_행과_열을_모두_0으로_바꾼다() {
+    int[][] matrix = {
+        {1, 2, 3, 4, 5, 6, 7},
+        {2, 4, 5, 6, 7, 8, 9},
+        {7, 4, 6, 2, 0, 4, 5},
+        {1, 4, 9, 2, 9, 4, 5}
+    };
+
+    int[][] result = {
+        {1, 2, 3, 4, 0, 6, 7},
+        {2, 4, 5, 6, 0, 8, 9},
+        {0, 0, 0, 0, 0, 0, 0},
+        {1, 4, 9, 2, 0, 4, 5}
+    };
+
+    assertThat(matrixConvert(matrix), is(result));
+  }
+
 }
