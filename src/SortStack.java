@@ -44,6 +44,7 @@ public class SortStack {
       }
       sorting.push(pop);
     }
+    // 정렬 완료.
     while (!sorting.isEmpty()) {
       origin.push(sorting.pop());
     }

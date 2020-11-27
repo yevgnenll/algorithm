@@ -217,4 +217,9 @@ public class AlgoTest {
     assertThat(matrixConvert(matrix), is(result));
   }
 
+  @Test
+  public void 행렬_NxN이_입력되면_오른쪽으로_90도_회전시켜_반환하라() {
+
+  }
+
 }
