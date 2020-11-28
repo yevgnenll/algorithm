@@ -35,4 +35,38 @@ public class BitTest {
   private int leftBitShift(int num, int j) {
     return num << j;
   }
+
+  @Test
+  public void 정수가_주어졌을때_0하나를_1로_바꾸어_가장_길게_1이_연속으로_나오는_수를_반환하라() {
+    int data = 1011110101;
+    assertThat(convert1bit(data), is("111111"));
+    assertThat(convert1bit(1001110101), is("11111"));
+    assertThat(convert1bit(1000110111), is("111111"));
+    assertThat(convert1bit(1111010111), is("111111"));
+  }
+
+  private String convert1bit(int data) {
+    String[] d = String.valueOf(data).split("0");
+    int max = 0;
+    int maxIndex = 0;
+    for (int i = 0; i < d.length; i++) {
+      if (d[i].length() > max) {
+        max = d[i].length();
+        maxIndex = i;
+      }
+    }
+    String result = "";
+    if (maxIndex < d.length-1 && d[maxIndex+1] != "") {
+      result = d[maxIndex] + "1" + d[maxIndex+1];
+    }
+    if (maxIndex > 0 && d[maxIndex-1] != "") {
+      String re = d[maxIndex-1] + "1" + d[maxIndex];
+      if (result.length() < re.length()) {
+        return re;
+      }
+    }
+    return result;
+  }
+
+
 }
