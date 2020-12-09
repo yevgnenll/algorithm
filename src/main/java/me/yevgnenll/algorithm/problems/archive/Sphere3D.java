@@ -1,4 +1,4 @@
-package me.yevgnenll.algorithm.problems;
+package me.yevgnenll.algorithm.problems.archive;
 
 import static org.junit.jupiter.api.Assertions.*;
 
