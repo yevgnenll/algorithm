@@ -1,9 +1,10 @@
 package me.yevgnenll.algorithm.problems.LinkedList;
 
+import static org.assertj.core.api.Assertions.*;
+
 import java.util.HashSet;
 import java.util.Set;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +18,7 @@ public class Solution {
     int[] arr = {1, 2, 3, 4, 5, 5, 6, 7, 8, 9, 10};
     Node sample = makeSample(arr);
 
-    Assertions.assertThat(removeDuplicate(sample)).isEqualTo(5);
+    assertThat(removeDuplicate(sample)).isEqualTo(5);
   }
 
   @Test
@@ -25,7 +26,45 @@ public class Solution {
   public void removeDuplicateWithoutSpaceTest() {
     int[] arr = {1, 2, 3, 4, 5, 5, 6, 7, 8, 9, 10};
     Node sample = makeSample(arr);
-    Assertions.assertThat(removeDuplicateWithoutSpace(sample)).isEqualTo(5);
+    assertThat(removeDuplicateWithoutSpace(sample)).isEqualTo(5);
+  }
+
+  @Test
+  @DisplayName("뒤에서 k 번째 원소 반환하기")
+  public void findFromKthElementTest() {
+    int[] arr = {1, 2, 3, 4, 5, 5, 6, 7, 8, 9, 10};
+    Node sample = makeSample(arr);
+
+    assertThat(findFromKthElement(sample, 3)).isEqualTo(7);
+    assertThat(findFromKthElementEnhance(sample, 4)).isEqualTo(6);
+  }
+
+  public int findFromKthElement(Node node, int k) {
+    Node kth = null;
+    Node head = node;
+    while(node.hasNext()) {
+      if (k == 0) {
+        kth = head.getNext();
+      } else if (k < 0) {
+        kth = kth.getNext();
+      }
+      node = node.getNext();
+      k--;
+    }
+    return kth.getData();
+  }
+
+  public int findFromKthElementEnhance(Node node, int k) {
+    Node p1 = node;
+    Node p2 = node;
+    for (int i = 0; i < k; i ++) {
+      p1 = p1.getNext();
+    }
+    while (p1.hasNext()) {
+      p1 = p1.getNext();
+      p2 = p2.getNext();
+    }
+    return p2.getData();
   }
 
   private int removeDuplicateWithoutSpace(Node node) {
