@@ -5,8 +5,8 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode
 public class Node {
 
-  private Node next = null;
-  private int data;
+  public Node next = null;
+  public int data;
 
   public Node(int d) {
     this.data = d;

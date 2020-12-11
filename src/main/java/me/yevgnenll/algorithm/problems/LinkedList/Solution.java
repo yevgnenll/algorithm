@@ -3,6 +3,7 @@ package me.yevgnenll.algorithm.problems.LinkedList;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import org.junit.jupiter.api.DisplayName;
@@ -37,6 +38,38 @@ public class Solution {
 
     assertThat(findFromKthElement(sample, 3)).isEqualTo(7);
     assertThat(findFromKthElementEnhance(sample, 4)).isEqualTo(6);
+  }
+
+  @Test
+  @DisplayName("처음과 끝 노드를 제외하고 중간 노드 하나를 삭제하라")
+  public void deleteMiddleNodeTest() {
+    int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    int[] deleted = {1, 3, 4, 5, 6, 7, 8, 9, 10};
+    int[] length2 = {1, 2};
+    Node sample = makeSample(arr);
+    Node deletedNode = makeSample(deleted);
+    Node length2Node = makeSample(length2);
+
+    assertThat(deleteMiddleNode(sample)).isEqualTo(deletedNode);
+    assertThat(deleteMiddleNode(length2Node)).isEqualTo(makeSample(length2));
+  }
+
+  public Node deleteMiddleNode(Node node) {
+    if (Objects.isNull(node)) {
+      return null;
+    }
+    int length = 1;
+    Node calculate = node;
+    while (calculate.hasNext()) {
+      calculate = calculate.getNext();
+      length ++;
+    }
+    if (length == 2) return node;
+
+    Node next = node.getNext();
+    node.next = next.getNext();
+
+    return node;
   }
 
   public int findFromKthElement(Node node, int k) {
