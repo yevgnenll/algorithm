@@ -30,7 +30,9 @@ public class AlgoTest {
   @Test
   public void 문자열_중복_확인() {
     String a = "abcda";
+    String b = "zbcffge";
     assertTrue(hasDup(a));
+    assertTrue(hasDup(b));
   }
 
   private boolean hasPerm(String a, String b) {

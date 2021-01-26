@@ -54,6 +54,38 @@ public class Solution {
     assertThat(deleteMiddleNode(length2Node)).isEqualTo(makeSample(length2));
   }
 
+  @Test
+  @DisplayName("연결리스트의 합을 구하라 숫자는 역순으로 배치되어 있으며, 반환도 연결리스트로 반환한다")
+  public void sumLinkedListTest() {
+    Node a = makeSample(new int[] {7, 1, 6});
+    Node b = makeSample(new int[] {2, 9, 5});
+    Node result = makeSample(new int[] {9, 1, 2});
+
+    assertThat(sumLinkedList(a, b)).isEqualTo(result);
+  }
+
+  public Node sumLinkedList(Node a, Node b) {
+    int sum = a.getData() + b.getData();
+    int op = 0;
+    if (sum / 10 > 1) {
+      sum -= (sum / 10) * 10;
+      op = sum / 10;
+    }
+    while (a.hasNext() && b.hasNext()) {
+
+    }
+    return null;
+  }
+
+  private int convertToInt(Node head) {
+    StringBuffer str = new StringBuffer(head.getData());
+    while (head.hasNext()) {
+      head = head.getNext();
+      str.append(head.getData());
+    }
+    return Integer.parseInt(str.reverse().toString());
+  }
+
   public Node deleteMiddleNode(Node node) {
     if (Objects.isNull(node)) {
       return null;
@@ -62,9 +94,10 @@ public class Solution {
     Node calculate = node;
     while (calculate.hasNext()) {
       calculate = calculate.getNext();
-      length ++;
+      length++;
     }
-    if (length == 2) return node;
+    if (length == 2)
+      return node;
 
     Node next = node.getNext();
     node.next = next.getNext();
@@ -75,7 +108,7 @@ public class Solution {
   public int findFromKthElement(Node node, int k) {
     Node kth = null;
     Node head = node;
-    while(node.hasNext()) {
+    while (node.hasNext()) {
       if (k == 0) {
         kth = head.getNext();
       } else if (k < 0) {
@@ -90,7 +123,7 @@ public class Solution {
   public int findFromKthElementEnhance(Node node, int k) {
     Node p1 = node;
     Node p2 = node;
-    for (int i = 0; i < k; i ++) {
+    for (int i = 0; i < k; i++) {
       p1 = p1.getNext();
     }
     while (p1.hasNext()) {
@@ -116,7 +149,7 @@ public class Solution {
 
   private int removeDuplicate(Node node) {
     Set<Integer> value = new HashSet<>();
-    while(node.hasNext()) {
+    while (node.hasNext()) {
       if (value.contains(node.getData())) {
         return node.getData();
       } else {
@@ -134,5 +167,6 @@ public class Solution {
     }
     return sample;
   }
+
 
 }
